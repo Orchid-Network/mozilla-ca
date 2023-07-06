@@ -29,10 +29,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up commit signing
-        uses: Chia-Network/actions/commit-sign/gpg@main
+        uses: Orchid-Network/actions/commit-sign/gpg@main
         with:
-          gpg_private_key: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_KEY }}
-          passphrase: ${{ secrets.CHIA_AUTOMATION_PRIVATE_GPG_PASSPHRASE }}
+          gpg_private_key: ${{ secrets.ORCHID_AUTOMATION_PRIVATE_GPG_KEY }}
+          passphrase: ${{ secrets.ORCHID_AUTOMATION_PRIVATE_GPG_PASSPHRASE }}
 
       - name: Update Mozilla cert.pem Nightly
         if: startsWith(matrix.os, 'ubuntu')
@@ -46,4 +46,4 @@ jobs:
 
       - name: Hook Blockchain CA Update workflow
         run: |
-          curl -XPOST -H "Authorization: token ${{ secrets.WORKFLOW_TRIGGERS }}" -H "Accept: application/vnd.github.v3+json" -H "Content-Type: application/json" https://api.github.com/repos/Chia-Network/chia-blockchain/actions/workflows/mozilla-ca-cert.yml/dispatches --data '{"ref": "main" }'
+          curl -XPOST -H "Authorization: token ${{ secrets.WORKFLOW_TRIGGERS }}" -H "Accept: application/vnd.github.v3+json" -H "Content-Type: application/json" https://api.github.com/repos/Orchid-Network/orchid-blockchain/actions/workflows/mozilla-ca-cert.yml/dispatches --data '{"ref": "main" }'
